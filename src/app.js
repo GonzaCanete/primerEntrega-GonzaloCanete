@@ -56,14 +56,14 @@ app.get('/api/products', (req, res) => {
 
 // metodo POST para agregar los productos
 app.post('/api/products', (req, res) => {
-    // Obtén los datos del producto desde el cuerpo de la solicitud
+    // leo los datos desde el body
     const { title, description, price, thumbnail, code, stock, status, category } = req.body;
 
-    // Comprueba si el código de producto ya existe
+    // Compruebo si el código de producto ya existe
     if (productInstance.isCodeExist(code)) {
         res.status(400).json({ error: "Ya existe un producto con este código." });
     } else {
-        // Crea un nuevo producto con los campos adicionales
+        // agrego un nuevo producto con los campos adicionales
         const newProduct = productInstance.addProduct(title, description, price, thumbnail, code, stock, status, category);
         res.status(201).json({ product: newProduct });
     }
@@ -76,7 +76,7 @@ app.put('/api/products/:id', (req, res) => {
     // guardo los datos desde el body
     const { title, description, price, thumbnail, code, stock, status, category } = req.body;
 
-    // llamo al método `updateProduct` de la instancia de `productManager`
+    // llamo al método 'updateProduct' de la instancia de 'productManager'
     const updatedProduct = productInstance.updateProduct(id, {
         title,
         description,
@@ -99,10 +99,10 @@ app.put('/api/products/:id', (req, res) => {
 app.delete('/api/products/:id', (req, res) => {
     const id = parseInt(req.params.id);
 
-    // llamo al método `deleteProduct` de la instancia de `productManager`
+    // llamo al método 'deleteProduct' de la instancia de 'productManager'
     const deletedProduct = productInstance.deleteProduct(id);
 
-    // Comprueba si el producto se eliminó con éxito
+    // veo si el producto se eliminó con éxito
     if (deletedProduct !== 'not found') {
         res.json({ message: 'Producto eliminado con éxito', deletedProduct });
     } else {
@@ -118,26 +118,27 @@ app.get('/api/cart', (req, res) => {
 // metodo post para agregar productos por id
 app.post('/api/cart/product/:id', (req, res) => {
     const productId = parseInt(req.params.id);
-    const quantity = req.body.quantity || 1; // Inicializa quantity en 1 si no se proporciona en la solicitud
+    // arranco una constante cantidad distinto a 0 que lea desde el body la cantidad de items anteriores
+    const quantity = req.body.quantity || 1; 
   
-    // Verificar si el producto existe en el productManager
+    // compruebo si existe el producto en el productManager()
     const product = productInstance.getProductsById(productId);
   
     if (product === 'Not found') {
       return res.status(404).json({ error: 'Producto no encontrado' });
     }
   
-    // Buscar si el producto ya está en el carrito
+    // compruebo que el producto no este en el carrito
     const existingCartItem = cart.find(item => item.productId === productId);
   
     if (existingCartItem) {
-      // Si el producto ya está en el carrito, actualiza la cantidad
+      // Si el producto ya está en el carrito, le agrego uno al quantity
       existingCartItem.quantity += quantity;
     } else {
-      // Si el producto no está en el carrito, agrégalo
+      // Si el producto no está en el carrito, lo agrego al array
       cart.push({ productId, quantity });
     }
-  
+      
     res.json({ message: 'Producto agregado al carrito con éxito', cart });
   });
   
