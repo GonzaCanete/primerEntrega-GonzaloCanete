@@ -101,14 +101,16 @@ class productManager{
     }
     // genero un método para eliminar un producto por id
     deleteProduct(id) {
-        const productIndex = this.#products.findIndex(product => product.id === id);
-
-        if (productIndex !== -1) {
-            const deletedProduct = this.#products.splice(productIndex, 1)[0];
-            return deletedProduct;
-        } else {
-            return "not found";
-        }
+      const productIndex = this.#products.findIndex(product => product.id === id);
+    
+      if (productIndex !== -1) {
+        const deletedProduct = this.#products.splice(productIndex, 1)[0];
+        // guardo los productos actualizados en el archivo JSON
+        this.saveProductsToFile();
+        return deletedProduct;
+      } else {
+        return "not found";
+      }
     }
     
     

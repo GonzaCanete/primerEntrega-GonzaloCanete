@@ -36,15 +36,6 @@
     "stock": 4
   },
   {
-    "id": 5,
-    "title": "Elden ring",
-    "description": "Juego para playstation 5",
-    "price": 50,
-    "thumbnail": "./img",
-    "code": 123,
-    "stock": 50
-  },
-  {
     "id": 6,
     "title": "Resident evil 4",
     "description": "Juego para playstation 5",
@@ -97,14 +88,5 @@
     "thumbnail": "./img",
     "code": 4787,
     "stock": 2
-  },
-  {
-    "id": 12,
-    "title": "Prueba JSON",
-    "description": "Juego de play 5",
-    "price": 40,
-    "thumbnail": "./img",
-    "code": 134578,
-    "stock": 46
   }
 ]

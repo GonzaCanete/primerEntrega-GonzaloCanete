@@ -101,17 +101,19 @@ app.put('/api/products/:id', (req, res) => {
 
 app.delete('/api/products/:id', (req, res) => {
     const id = parseInt(req.params.id);
-
+  
     // llamo al método `deleteProduct` de la instancia de `productManager`
     const deletedProduct = productInstance.deleteProduct(id);
-
-    // Comprueba si el producto se eliminó con éxito
+  
     if (deletedProduct !== 'not found') {
-        res.json({ message: 'Producto eliminado con éxito', deletedProduct });
+      // guardo los productos en el archivo JSON después de eliminar el producto
+      productInstance.saveProductsToFile();
+  
+      res.json({ message: 'Producto eliminado con éxito', deletedProduct });
     } else {
-        res.status(404).json({ error: 'No se encontró un producto con ese ID.' });
+      res.status(404).json({ error: 'No se encontró un producto con ese ID.' });
     }
-});
+  });
 
 // metodo get para traer el carrito de compras
 app.get('/api/cart', (req, res) => {
