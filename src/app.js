@@ -125,21 +125,21 @@ app.post('/api/cart/product/:id', (req, res) => {
     const productId = parseInt(req.params.id);
     const quantity = req.body.quantity || 1; // Inicializa quantity en 1 si no se proporciona en la solicitud
   
-    // Verificar si el producto existe en el productManager
+    // Verifico si el producto existe en el productManager
     const product = productInstance.getProductsById(productId);
   
     if (product === 'Not found') {
       return res.status(404).json({ error: 'Producto no encontrado' });
     }
   
-    // Buscar si el producto ya está en el carrito
+    // Busco si el producto ya está en el carrito
     const existingCartItem = cart.find(item => item.productId === productId);
   
     if (existingCartItem) {
-      // Si el producto ya está en el carrito, actualiza la cantidad
+      // Si el producto ya está en el carrito, le agrego uno a cantidad
       existingCartItem.quantity += quantity;
     } else {
-      // Si el producto no está en el carrito, agrégalo
+      // Si el producto no está en el carrito, lo agrego
       cart.push({ productId, quantity });
     }
   
