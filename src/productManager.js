@@ -34,10 +34,19 @@ class productManager{
         }
     }
 
-    // Guardo en el archivo
+    // Guardo el producto para llamar al JSON
     saveProducts() {
+        try {
+          this.saveProductsToFile();
+          console.log('Productos guardados con éxito.');
+        } catch (error) {
+          console.error('Error al guardar productos:', error);
+        }
+      }
+    // Funcion para guardar el producto en el archivo JSON
+    saveProductsToFile() {
         fs.writeFileSync(this.path, JSON.stringify(this.#products, null, 2), 'utf8');
-    }
+      }
 
     // creo productos y los agrego al array this.#products creado en el constructor
     addProduct(title, description, price, thumbnail, code, stock) {
@@ -58,10 +67,14 @@ class productManager{
         };
     
         this.#products.push(product);
-        // Guardo en el archivo JSON
-        this.saveProducts(); 
+        
         return product;
       }
+      // metodo para guardar en el JSON
+      saveProducts() {
+        this.saveProductsToFile();
+      }
+       
     
 
     
@@ -104,6 +117,7 @@ class productManager{
 
 
 
+
 const productInstance = new productManager('product.json');
 productInstance.addProduct("Xbox", "Consola de videojuegos", 500, "./img", 65, 12);
 productInstance.addProduct("Playstation 5", "Consola de videojuegos", 800, "./img", 50, 30);
@@ -115,6 +129,7 @@ productInstance.addProduct("Zelda: Tears of the kingdom", "Juego para nintendo s
 productInstance.addProduct("Joystick PS5", "Accesorio para playstation 5", 45, "./img", 456, 7);
 productInstance.addProduct("Joystick Xbox", "Accesorio para Xbox", 45, "./img", 805, 7);
 productInstance.addProduct("Silla gamer", "Silla de escritorio con diseño gamer", 120, "./img", 44, 2);
+productInstance.addProduct("Silla gamer", "Silla de escritorio con diseño gamer", 120, "./img", 4787, 2);
 
 // exporto los productos
 

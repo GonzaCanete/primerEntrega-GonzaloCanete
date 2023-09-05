@@ -57,18 +57,20 @@ app.get('/api/products', (req, res) => {
 
 // metodo POST para agregar los productos
 app.post('/api/products', (req, res) => {
-    // Obtén los datos del producto desde el cuerpo de la solicitud
+    // traigo los datos
     const { title, description, price, thumbnail, code, stock, status, category } = req.body;
-
-    // Comprueba si el código de producto ya existe
+  
+    // Compruebo si el código de producto ya existe
     if (productInstance.isCodeExist(code)) {
-        res.status(400).json({ error: "Ya existe un producto con este código." });
+      res.status(400).json({ error: "Ya existe un producto con este código." });
     } else {
-        // Crea un nuevo producto con los campos adicionales
-        const newProduct = productInstance.addProduct(title, description, price, thumbnail, code, stock, status, category);
-        res.status(201).json({ product: newProduct });
+      // Creo un nuevo producto con los campos adicionales
+      const newProduct = productInstance.addProduct(title, description, price, thumbnail, code, stock, status, category);
+      res.status(201).json({ product: newProduct });
+      // Guardo los productos una vez que se ha agregado el nuevo producto
+      productInstance.saveProductsToFile();
     }
-});
+  })
 
 // metodo PUT para modificar los productos
 app.put('/api/products/:id', (req, res) => {

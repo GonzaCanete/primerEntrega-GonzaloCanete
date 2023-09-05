@@ -88,5 +88,23 @@
     "thumbnail": "./img",
     "code": 44,
     "stock": 2
+  },
+  {
+    "id": 11,
+    "title": "Silla gamer",
+    "description": "Silla de escritorio con diseño gamer",
+    "price": 120,
+    "thumbnail": "./img",
+    "code": 4787,
+    "stock": 2
+  },
+  {
+    "id": 12,
+    "title": "Prueba JSON",
+    "description": "Juego de play 5",
+    "price": 40,
+    "thumbnail": "./img",
+    "code": 134578,
+    "stock": 46
   }
 ]
