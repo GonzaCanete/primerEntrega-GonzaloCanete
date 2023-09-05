@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Xbox",
+    "description": "Consola de videojuegos",
+    "price": 500,
+    "thumbnail": "./img",
+    "code": 65,
+    "stock": 12
+  },
+  {
+    "id": 2,
+    "title": "Playstation 5",
+    "description": "Consola de videojuegos",
+    "price": 800,
+    "thumbnail": "./img",
+    "code": 50,
+    "stock": 30
+  },
+  {
+    "id": 3,
+    "title": "PC gamer",
+    "description": "Computadora equipada para jugar",
+    "price": 1200,
+    "thumbnail": "./img",
+    "code": 100,
+    "stock": 8
+  },
+  {
+    "id": 4,
+    "title": "Nintendo switch",
+    "description": "Consola de videojuegos",
+    "price": 350,
+    "thumbnail": "./img",
+    "code": 12,
+    "stock": 4
+  },
+  {
+    "id": 5,
+    "title": "Elden ring",
+    "description": "Juego para playstation 5",
+    "price": 50,
+    "thumbnail": "./img",
+    "code": 123,
+    "stock": 50
+  },
+  {
+    "id": 6,
+    "title": "Resident evil 4",
+    "description": "Juego para playstation 5",
+    "price": 50,
+    "thumbnail": "./img",
+    "code": 150,
+    "stock": 45
+  },
+  {
+    "id": 7,
+    "title": "Zelda: Tears of the kingdom",
+    "description": "Juego para nintendo switch",
+    "price": 70,
+    "thumbnail": "./img",
+    "code": 800,
+    "stock": 43
+  },
+  {
+    "id": 8,
+    "title": "Joystick PS5",
+    "description": "Accesorio para playstation 5",
+    "price": 45,
+    "thumbnail": "./img",
+    "code": 456,
+    "stock": 7
+  },
+  {
+    "id": 9,
+    "title": "Joystick Xbox",
+    "description": "Accesorio para Xbox",
+    "price": 45,
+    "thumbnail": "./img",
+    "code": 805,
+    "stock": 7
+  },
+  {
+    "id": 10,
+    "title": "Silla gamer",
+    "description": "Silla de escritorio con diseño gamer",
+    "price": 120,
+    "thumbnail": "./img",
+    "code": 44,
+    "stock": 2
+  }
+]

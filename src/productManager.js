@@ -1,3 +1,6 @@
+import fs from 'fs';
+
+
 // Crear una clase productManager con un constructor (title, description, price, thumbnail, code, stock)
 
 class productManager{
@@ -7,6 +10,7 @@ class productManager{
         // genero un array vacio de productos que se va a ir llenando con el addProduct()
         this.#products = [];
         this.path = path;
+        this.products = this.loadProducts();
     }
     // genero el get que me devuelve el array de productos
     getProducts() {
@@ -20,30 +24,46 @@ class productManager{
     isCodeExist(code) {
         return this.#products.some(product => product.code === code);
     }
+    // Cargo un archivo JSON 
+    loadProducts() {
+        try {
+          const data = fs.readFileSync(this.path, 'utf8');
+          return JSON.parse(data) || [];
+        } catch (error) {
+          return [];
+        }
+    }
+
+    // Guardo en el archivo
+    saveProducts() {
+        fs.writeFileSync(this.path, JSON.stringify(this.#products, null, 2), 'utf8');
+    }
 
     // creo productos y los agrego al array this.#products creado en el constructor
     addProduct(title, description, price, thumbnail, code, stock) {
-        // compruebo que no exista un producto con ese codigo
+        // Comprubo si el código de producto ya existe
         if (this.isCodeExist(code)) {
-            // devuelvo un mensaje en consola que advierte que el codigo ya existe y no lo agrego al array
-            console.log("Ya existe un producto con este código.");
-            return "codigo existente";
+          console.log("Ya existe un producto con este código.");
+          return "Código existente";
         }
-
+    
         const product = {
-            // genero un id que se incrementa cada vez que creo un producto
-            id: this.#products.length + 1,
-            title,
-            description,
-            price,
-            thumbnail,
-            code,
-            stock
+          id: this.#products.length + 1,
+          title,
+          description,
+          price,
+          thumbnail,
+          code,
+          stock,
         };
-        // agrego el producto al array
+    
         this.#products.push(product);
+        // Guardo en el archivo JSON
+        this.saveProducts(); 
         return product;
-    }
+      }
+    
+
     
 
     // creo el metodo para que reciba un id por parametro y devuelva el producto con esa id
@@ -80,12 +100,11 @@ class productManager{
     
     
     
-    
 }
 
 
 
-const productInstance = new productManager();
+const productInstance = new productManager('product.json');
 productInstance.addProduct("Xbox", "Consola de videojuegos", 500, "./img", 65, 12);
 productInstance.addProduct("Playstation 5", "Consola de videojuegos", 800, "./img", 50, 30);
 productInstance.addProduct("PC gamer", "Computadora equipada para jugar", 1200, "./img", 100, 8);
