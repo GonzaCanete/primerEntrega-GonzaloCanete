@@ -2,7 +2,6 @@ import express  from "express";
 // Importo mi archivo 
 import productInstance from "./productManager.js";
 import cart from './cart.js';
-import axios from 'axios';
 const app = express();
 // Query param
 app.use(express.urlencoded({extended:true}));
